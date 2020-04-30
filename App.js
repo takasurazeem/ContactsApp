@@ -10,7 +10,7 @@ import {
 // My imports
 import contacts, { compareNames } from './contacts'
 import AddContactForm from './src/components/AddContactForm'
-import ContactList from './src/components/ContactsList'
+import SectionListContacts from './src/components/SectionListContacts'
 
 
 const styles = StyleSheet.create({
@@ -66,7 +66,7 @@ class App extends React.Component {
           <Button title="toggle form" onPress={this.toggleForm} />
           {
             this.state.showContacts && !this.state.showForm &&
-            <ContactList style={styles.fill} contacts={this.state.contacts} />
+            <SectionListContacts style={styles.fill} contacts={this.state.contacts} />
           }
         </SafeAreaView>
       </>
