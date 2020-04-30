@@ -3,12 +3,10 @@ import {
     SafeAreaView,
     StyleSheet,
     Button,
-    View,
     StatusBar,
 } from 'react-native';
 
 // My imports
-import contacts, { compareNames } from '../../contacts'
 import SectionListContacts from '../components/SectionListContacts'
 
 
