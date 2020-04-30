@@ -9,8 +9,8 @@ import {
 
 // My imports
 import contacts, { compareNames } from './contacts'
-import AddContactForm from './AddContactForm'
-import ContactList from './ContactsList'
+import AddContactForm from './src/components/AddContactForm'
+import ContactList from './src/components/ContactsList'
 
 
 const styles = StyleSheet.create({
