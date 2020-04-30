@@ -1,78 +1,50 @@
-import React from 'react';
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
   Button,
   View,
   StatusBar,
-} from 'react-native';
+} from "react-native";
+import { createSwitchNavigator } from "react-navigation";
 
 // My imports
-import contacts, { compareNames } from './contacts'
-import AddContactForm from './src/components/AddContactForm'
-import SectionListContacts from './src/components/SectionListContacts'
-
+import contacts, { compareNames } from "./contacts";
+import AddContactScreen from "./src/screens/AddContactScreen";
+import ContactListScreen from "./src/screens/ContactListScreen";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#000',
+    backgroundColor: "#000",
   },
   fill: {
     flex: 1,
-  }
+  },
 });
 
-class App extends React.Component {
-  state = {
-    showContacts: true,
-    contacts: contacts,
-    showForm: false,
+const AppNavigator = createSwitchNavigator(
+  {
+    AddContact: AddContactScreen,
+    ContactList: ContactListScreen,
+  },
+  {
+    initialRouteName: "ContactList",
   }
+);
 
-  addContact = newContact => {
-    this.setState(prevState => ({
+export default class App extends React.Component {
+  state = {
+    contacts: contacts,
+  };
+
+  addContact = (newContact) => {
+    this.setState((prevState) => ({
       contacts: [...prevState.contacts, newContact],
       showForm: false,
-    }))
-  }
-
-  toggleContacts = () => { this.setState(prevState => ({ showContacts: !prevState.showContacts })) }
-
-  toggleForm = () => { this.setState(prevState => ({ showForm: !prevState.showForm })) }
-
-  sort = () => {
-    this.state = this.setState(prevState => ({
-      contacts: [...prevState.contacts].sort(compareNames),
-    }))
-  }
-
+    }));
+  };
 
   render() {
-    if (this.state.showForm)
-      return (
-        <>
-          <StatusBar barStyle="dark-content" />
-          <SafeAreaView style={styles.fill}>
-            <AddContactForm onSubmit={this.addContact} />
-          </SafeAreaView>
-        </>
-      )
-    return (
-      <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={styles.fill}>
-          <Button title="toggle contacts" onPress={this.toggleContacts} />
-          {/* <Button title="sort" onPress={this.sort} /> */}
-          <Button title="toggle form" onPress={this.toggleForm} />
-          {
-            this.state.showContacts && !this.state.showForm &&
-            <SectionListContacts style={styles.fill} contacts={this.state.contacts} />
-          }
-        </SafeAreaView>
-      </>
-    )
+    return <AppNavigator screenProps={{ contacts: this.state.contacts, addContact: this.addContact }} />;
   }
 }
-
-
-export default App;
