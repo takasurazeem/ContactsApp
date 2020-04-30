@@ -10,7 +10,7 @@ const renderItem = ({ item }) => <Row {...item} />
 
 const renderSectionHeader = obj => <Text>{obj.section.title}</Text>
 
-const ContactList = props => {
+const SectionListContacts = props => {
     const contactsByLetter = props.contacts.reduce((obj, contact) => {
         const firstLetter = contact.name[0].toUpperCase()
         return {
@@ -32,10 +32,10 @@ const ContactList = props => {
     )
 }
 
-ContactList.propTypes = {
+SectionListContacts.propTypes = {
     renderItem: PropTypes.func,
     renderSectionHeader: PropTypes.func,
     contacts: PropTypes.array,
 }
 
-export default ContactList
+export default SectionListContacts
