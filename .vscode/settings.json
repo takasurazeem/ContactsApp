@@ -3,5 +3,7 @@
         "**/.expo": true,
         "**/.expo-shared": true,
         "**/node_modules": true
-    }
+    },
+    "prettier.singleQuote": true,
+    "prettier.semi": false
 }

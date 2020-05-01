@@ -1,12 +1,12 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, Button, StatusBar } from "react-native";
+import React from 'react';
+import { SafeAreaView, StyleSheet, Button, StatusBar } from 'react-native';
 
 // My imports
-import SectionListContacts from "../components/SectionListContacts";
+import SectionListContacts from '../components/SectionListContacts';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#000",
+    backgroundColor: '#000',
   },
   fill: {
     flex: 1,
@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
 });
 
 export default class ContactListScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    headerTitle: "Contacts",
+  static defaultNavigationOptions = ({ navigation }) => ({
+    headerTitle: 'Contacts',
     headerRight: (
       <Button
         title="Add"
-        color='#a41034'
+        color="#a41034"
         onPress={() => {
-          navigation.navigate("AddContact");
+          navigation.navigate('AddContact');
         }}
       />
     ),
@@ -36,7 +36,7 @@ export default class ContactListScreen extends React.Component {
   };
 
   showForm = () => {
-    this.props.navigation.navigate("AddContact");
+    this.props.navigation.navigate('AddContact');
   };
 
   sort = () => {
@@ -58,7 +58,7 @@ export default class ContactListScreen extends React.Component {
               contacts={this.props.screenProps.contacts}
               onSelectContact={(contact) => {
                 // debugger;
-                this.props.navigation.navigate("ContactDetails", {
+                this.props.navigation.navigate('ContactDetails', {
                   phone: contact.phone,
                   name: contact.name,
                 });
