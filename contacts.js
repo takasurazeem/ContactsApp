@@ -1,4 +1,4 @@
-const NUM_CONTACTS = 15
+const NUM_CONTACTS = 5
 
 const firstNames = [
     'Emma', 'Noah', 'Olivia', 'Liam', 'Ava', 'William', 'Sophia', 'Mason', 'Isabella', 'James',
