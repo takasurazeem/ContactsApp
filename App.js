@@ -30,41 +30,29 @@ const ContactsTab = createStackNavigator(
   }
 );
 
-ContactsTab.navigationOptions = {
-  /* tabBarIcon: ({ focused, tintColor }) => (
-    <Ionicons
-      name={`ios-contacts${focused ? '' : '-outline'}`}
-      size={25}
-      color={tintColor}
-    />
-  ), */
-};
-
 const MainNavigator = createBottomTabNavigator(
   {
     Contacts: ContactsTab,
     Settings: SettingsScreen,
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
+        let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Contacts') {
-          iconName = `ios-contacts${focused ? '' : '-outline'}`;
+          iconName = focused
+            ? 'ios-information-circle'
+            : 'ios-information-circle-outline';
+          // Sometimes we want to add badges to some icons.
+          // You can check the implementation below.
         } else if (routeName === 'Settings') {
-          iconName = `ios-options${focused ? '' : '-outline'}`;
+          iconName = focused ? 'ios-list-box' : 'ios-list';
         }
 
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return (
-          <Ionicons
-            name={iconName}
-            size={horizontal ? 20 : 25}
-            color={tintColor}
-          />
-        );
+        // You can return any component that you like here!
+        return <IconComponent name={iconName} size={25} color={tintColor} />;
       },
     }),
     tabBarOptions: {
@@ -84,7 +72,7 @@ const AppNavigator = createSwitchNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator)
+const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   state = {
