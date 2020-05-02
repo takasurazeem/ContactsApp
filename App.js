@@ -3,6 +3,7 @@ import {
   createStackNavigator,
   createSwitchNavigator,
   createBottomTabNavigator,
+  createAppContainer,
 } from 'react-navigation';
 
 // My imports
@@ -83,6 +84,8 @@ const AppNavigator = createSwitchNavigator(
   }
 );
 
+const AppContainer = createAppContainer(AppNavigator)
+
 export default class App extends React.Component {
   state = {
     contacts: null,
@@ -106,7 +109,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <AppNavigator
+      <AppContainer
         screenProps={{
           contacts: this.state.contacts,
           addContact: this.addContact,
