@@ -2,7 +2,7 @@ import React from 'react';
 import {
   createStackNavigator,
   createSwitchNavigator,
-  createTabNavigator,
+  createBottomTabNavigator,
 } from 'react-navigation';
 
 // My imports
@@ -30,23 +30,45 @@ const ContactsTab = createStackNavigator(
 );
 
 ContactsTab.navigationOptions = {
-  tabBarIcon: ({ focused, tintColor }) => (
+  /* tabBarIcon: ({ focused, tintColor }) => (
     <Ionicons
       name={`ios-contacts${focused ? '' : '-outline'}`}
       size={25}
       color={tintColor}
     />
-  ),
+  ), */
 };
 
-const MainNavigator = createTabNavigator(
+const MainNavigator = createBottomTabNavigator(
   {
     Contacts: ContactsTab,
     Settings: SettingsScreen,
   },
   {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Contacts') {
+          iconName = `ios-contacts${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Settings') {
+          iconName = `ios-options${focused ? '' : '-outline'}`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return (
+          <Ionicons
+            name={iconName}
+            size={horizontal ? 20 : 25}
+            color={tintColor}
+          />
+        );
+      },
+    }),
     tabBarOptions: {
-      activeTintColor: '#a41034',
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
     },
   }
 );
