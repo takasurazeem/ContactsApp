@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  createSwitchNavigator,
-  createBottomTabNavigator,
-  createAppContainer,
-} from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 // My imports
 import AddContactScreen from './src/screens/AddContactScreen';
@@ -42,7 +39,7 @@ const MainNavigator = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Contacts') {
-          iconName = 'ios-contacts'
+          iconName = 'ios-contacts';
         } else if (routeName === 'Settings') {
           iconName = focused ? 'ios-list-box' : 'ios-list';
         }
